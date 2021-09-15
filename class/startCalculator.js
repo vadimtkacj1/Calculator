@@ -1,17 +1,11 @@
-import {Event} from './class/Event.js';
-import {getDocumentConstructor} from './callClass.js';
-import {elementModel} from './script.js';
+import {getDocumentConstructor} from '../script.js';
 
-const elementModel = {
-    field: '.field',
-    field2: '.field-2',
-    clean: '.clean',
-    sum: '.sum',
-    numbers: '.numbers',
-    operators: '.operators',
+export class StartCalculator {
+  constructor(field, field2, valueNumber) {
+    this.field = field;
+    this.field2 = field2;
+    this.fieldText = getDocumentConstructor.searchElement(this.field);
+    this.field2Text = getDocumentConstructor.searchElement(this.field2);
+    this.valueNumber = valueNumber;
   }
-
-
-const getEvent = new Event([getDocumentConstructor.searchElement(elementModel.clean), getDocumentConstructor.searchElement(elementModel.sum), getDocumentConstructor.searchElements(elementModel.numbers), getDocumentConstructor.searchElements(elementModel.operators)]);
-
-getEvent.click();
+}

@@ -1,5 +1,8 @@
 import {Event} from './class/Event.js';
-import {getDocumentConstructor} from './callClass.js';
+import {MathOperation} from './class/MathOperation.js';
+import {GenerateNumbers} from './class/GenerateNumbers.js';
+import {LimitationModel} from './class/LimitationModel.js';
+import {DocumentConstructor} from './class/DocumentConstructor.js';
 
 export const elementModel = {
   field: '.field',
@@ -9,6 +12,14 @@ export const elementModel = {
   numbers: '.numbers',
   operators: '.operators',
 }
+
+export const getDocumentConstructor = new DocumentConstructor;
+export const getLimitationModel = new LimitationModel;
+export const getMathOperation = new MathOperation(elementModel.field, elementModel.field2);
+export const getGenerateNumbers = new GenerateNumbers(elementModel.field, elementModel.field2);
+const getEvent = new Event([getDocumentConstructor.searchElement(elementModel.clean), getDocumentConstructor.searchElement(elementModel.sum), getDocumentConstructor.searchElements(elementModel.numbers), getDocumentConstructor.searchElements(elementModel.operators)]);
+
+getEvent.click();
 
 export const technicalModel = {
   num1: '',
@@ -21,6 +32,3 @@ export const technicalModel = {
   equals: getDocumentConstructor.searchElement(elementModel.sum).getAttribute('data-value'),
 }
 
-const getEvent = new Event([getDocumentConstructor.searchElement(elementModel.clean), getDocumentConstructor.searchElement(elementModel.sum), getDocumentConstructor.searchElements(elementModel.numbers), getDocumentConstructor.searchElements(elementModel.operators)]);
-
-getEvent.click();

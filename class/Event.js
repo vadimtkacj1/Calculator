@@ -1,7 +1,5 @@
-import {Numbers} from './Numbers.js';
-import {Operators} from './Operators.js';
-import {Clean} from './Clean.js';
-import {Sum} from './Sum.js';
+import {Calculator} from './Calculator.js';
+import {elementModel} from '../script.js';
 
 export class Event {
   constructor(documentElements) {
@@ -9,36 +7,19 @@ export class Event {
   }
     
   click() {
-    let getClass;
-
-    for (let documentElement of this.documentElements) {
-      if (documentElement.textContent != undefined) {
-        documentElement.addEventListener( "click", () => {
-          if (documentElement.className === 'clean') {
-            getClass = new Clean;
-            getClass.createClean();
-          }
-          
-          if (documentElement.className === 'sum')  {
-            getClass = new Sum;
-            getClass.createSum();
-          }
-        });
-      } else {
-        documentElement.forEach(elem => {
-          elem.addEventListener( "click", () => {
-            if (elem.className === 'operators') {
-              getClass = new Operators();
-              getClass.createOperators(elem);
-            }
-
-            if (elem.className === 'numbers') {
-              getClass = new Numbers();
-              getClass.createNumbers(elem);
-            }
-          });
-        });
+    document.addEventListener('click', function(event) {
+      let getButton = event.target;
+      const getCalculator = new Calculator(elementModel.field, elementModel.field2); 
+      
+      if (getButton.className === 'clean') {
+        getCalculator.createClean();
+      } else if (getButton.className === 'sum')  {
+        getCalculator.createSum();
+      } else if (getButton.className === 'operators') {
+        getCalculator.createOperators(getButton);
+      } else if (getButton.className === 'numbers') {
+        getCalculator.createNumbers(getButton);
       }
-    }
+    });
   }
 }
