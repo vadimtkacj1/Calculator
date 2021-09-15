@@ -13,8 +13,8 @@ export const elementModel = {
   operators: '.operators',
 }
 
-export const getDocumentConstructor = new DocumentConstructor;
 export const getLimitationModel = new LimitationModel;
+export const getDocumentConstructor = new DocumentConstructor;
 export const getMathOperation = new MathOperation(elementModel.field, elementModel.field2);
 export const getGenerateNumbers = new GenerateNumbers(elementModel.field, elementModel.field2);
 const getEvent = new Event([getDocumentConstructor.searchElement(elementModel.clean), getDocumentConstructor.searchElement(elementModel.sum), getDocumentConstructor.searchElements(elementModel.numbers), getDocumentConstructor.searchElements(elementModel.operators)]);
